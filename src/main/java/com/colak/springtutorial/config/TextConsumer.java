@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 @Slf4j
 public class TextConsumer {
 
-    private static final String INPUT_TOPIC = "TEXT-DATA";
+    public static final String INPUT_TOPIC = "TEXT-DATA";
 
 
     // Read as ConsumerRecord
@@ -20,7 +20,7 @@ public class TextConsumer {
             filter = "customRecordHeaderFilterStrategy"
 
     )
-    public void consumeMessage1(ConsumerRecord<String, String> consumerRecord) {
+    public void consumeMessage(ConsumerRecord<String, String> consumerRecord) {
         log.info("Key : {} Message : {}", consumerRecord.key(), consumerRecord.value());
     }
 

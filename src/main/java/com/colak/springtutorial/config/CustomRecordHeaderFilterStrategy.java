@@ -18,10 +18,12 @@ public class CustomRecordHeaderFilterStrategy implements RecordFilterStrategy<St
         Headers headers = consumerRecord.headers();
         Header lastHeader = headers.lastHeader("eventType");
 
-        var eventType = new String(lastHeader.value());
-        if (eventType.equalsIgnoreCase("ignoreHeader")) {
-            log.info("Message skipped because of header");
-            return true;
+        if (lastHeader != null) {
+            var eventType = new String(lastHeader.value());
+            if (eventType.equalsIgnoreCase("ignoreHeader")) {
+                log.info("Message skipped because of header");
+                return true;
+            }
         }
 
         if (consumerRecord.value().contains("ignore")) {
